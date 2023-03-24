@@ -5,8 +5,8 @@ from erp.settings import BASE_DIR
 
 
 def home(request):
-    return render(request, str(BASE_DIR) + "/HTML/base.html")
+    return render(request, "base.html")
 
 
 def courses(request):
-    return render(request, str(BASE_DIR) + "/HTML/courses.html")
+    return render(request, "courses.html")
