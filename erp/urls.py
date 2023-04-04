@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mainapp import views
+from mainapp.models import Department
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.home, name="home"),
-    path("courses", views.courses, name="courses"),
+    path("", views.home),
+    path("courses", views.courses),
 ]
+
+depts = Department.objects.all()
+for dept in depts:
+    urlpatterns.append(path(str(dept.id), views.department))
