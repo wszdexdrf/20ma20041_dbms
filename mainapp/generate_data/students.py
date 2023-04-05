@@ -18,6 +18,14 @@ for i in range(20):
     id = random.randint(1, 256)
     first_name, last_name, email, dob = STUDENTS[i]
     ph = random.randint(1000000000, 9999999999)
-    s = Student(id=id, first_name=first_name, last_name=last_name,
-                email=email, phone_number=ph, date_of_birth=dob, faculty_advisor_id=random.choice(faculty), department_id=random.choice(depts))
+    s = Student(
+        id=id,
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        phone_number=ph,
+        date_of_birth=dob,
+        faculty_advisor_id=random.choice(faculty),
+        department_id=random.choice(depts),
+    )
     s.save()

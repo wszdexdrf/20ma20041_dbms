@@ -92,19 +92,13 @@
         </nav>
 
         <main>
-            <h2>Welcome to College ERP</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut nunc sed risus convallis ultrices id id
-                augue. Duis ultrices, ex vel blandit vestibulum, libero elit maximus nisi, at aliquet mauris elit at
-                nunc.
-            </p>
-            <hr>
-            <h2>List of Departments</h2>
-            <ul>
-                {% for dept in departments %}
-                <li><a href={{dept.id}}>{{ dept.name }}</a></li>
-                {% endfor %}
-            </ul>
-
+          <form action="login" method="post">
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="name">
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="password">
+            <input type=submit>
+          </form>
         </main>
     </div>
     <footer>

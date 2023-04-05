@@ -22,6 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home),
     path("courses", views.courses),
+    path("login", views.login),
 ]
 
 depts = Department.objects.all()

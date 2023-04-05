@@ -28,6 +28,12 @@ for i in range(20):
     id = random.randint(1, 256)
     first_name, last_name, email = FACULTY_NAMES[i]
     ph = random.randint(1000000000, 9999999999)
-    f = Faculty(id=id, first_name=first_name, last_name=last_name,
-                email=email, phone_number=ph, department_id=random.choice(depts))
+    f = Faculty(
+        id=id,
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        phone_number=ph,
+        department_id=random.choice(depts),
+    )
     f.save()
