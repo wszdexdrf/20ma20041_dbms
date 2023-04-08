@@ -22,8 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home),
     path("courses", views.courses),
-    path("enrollments", views.login_view),
+    path("login", views.login_view),
 ]
-depts = Department.objects.all()
-for dept in depts:
-    urlpatterns.append(path(str(dept.id), views.department))

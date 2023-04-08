@@ -19,9 +19,9 @@ class Course(models.Model):
     id = models.BigAutoField(primary_key=True)
     course_name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    credits = models.IntegerField()
-    departmend_id = models.OneToOneField(
-        Department, on_delete=models.CASCADE, default=None)
+    department_id = models.ForeignKey(
+        Department, on_delete=models.CASCADE)
+    creds = models.IntegerField()
 
 
 class Student(models.Model):
@@ -33,6 +33,7 @@ class Student(models.Model):
     date_of_birth = models.DateField()
     faculty_advisor_id = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     department_id = models.ForeignKey(Department, on_delete=models.CASCADE)
+    password = models.CharField(max_length=200)
 
 
 class Enrollment(models.Model):

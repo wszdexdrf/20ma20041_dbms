@@ -28,8 +28,10 @@ DEPARTMENT_NAMES = [
     "Foreign Languages",
     "Public Health",
 ]
+
+ids = range(1, 256)
 for i in range(5):
-    department_id = random.randint(1, 256)
-    department_name = random.choice(DEPARTMENT_NAMES)
-    d = Department(id=department_id, name=department_name)
+    id = random.sample(ids, 1)[0]
+    department_name = random.sample(DEPARTMENT_NAMES, 1)[0]
+    d = Department(id=id, name=department_name)
     d.save()

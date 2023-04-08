@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest
-from .models import Department, Faculty
+from .models import Department, Faculty, Student, Course, Enrollment
+import mainapp.myhash as myhash
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -11,11 +12,13 @@ def home(request):
 
 
 def courses(request):
-    return render(request, "courses.html")
+    courses = Course.objects.all()
+    context = {"courses": courses}
+    return render(request, "courses.html", context)
 
 
 def department(request: HttpRequest):
-    dept_id = int(request.path.split('/')[1])
+    dept_id = int(request.path.split("/")[1])
     dept = Department.objects.get(id=dept_id)
     faculty = Faculty.objects.filter(department_id=dept_id)
     context = {"department": dept, "faculty": faculty}
@@ -23,7 +26,14 @@ def department(request: HttpRequest):
 
 
 @csrf_exempt
-def login(request: HttpRequest):
+def login_view(request: HttpRequest):
     if request.method == "POST":
-        print(request.POST)
-    return render(request, "login.html")
+        username = request.POST["name"]
+        password = request.POST["password"]
+        print(username, password)
+        student = Student.objects.get(pk=username)
+        if myhash.check_hash(password, student.password):
+            context = {"enrollments":
+                       Enrollment.objects.filter(student_id=username)}
+            return render(request, "enrollments.html", context)
+    return render(request, "enr_login.html")
