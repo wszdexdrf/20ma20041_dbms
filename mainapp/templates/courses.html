@@ -74,6 +74,14 @@
             margin-top: auto;
 
         }
+        .banner {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -94,16 +102,16 @@
         <main>
             <h1>List of Courses</h1>
             <table>
-              <tr>
-                <th>Course Name</th>
-                <th>Credits</th>
-              </tr>
-              {% for course in courses %}
-              <tr>
-                <td >{{ course.course_name }} </td>
-                <td>{{ course.creds }} </td>
-              </tr>
-              {% endfor %}
+                <tr>
+                    <th>Course Name</th>
+                    <th>Credits</th>
+                </tr>
+                {% for course in courses %}
+                <tr>
+                    <td><a href="/c{{course.id}}">{{ course.course_name }} </a></td>
+                    <td>{{ course.creds }} </td>
+                </tr>
+                {% endfor %}
             </table>
         </main>
     </div>

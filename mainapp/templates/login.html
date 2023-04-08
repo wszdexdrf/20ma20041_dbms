@@ -100,22 +100,13 @@
         </nav>
 
         <main>
-            <table>
-              <tr>
-                <th>Course Name</th>
-                <th>Credits</th>
-                <th>Grade</th>
-                <th>Enrollment Date</th>
-              </tr>
-              {% for enr in enrollments %}
-              <tr>
-                <td >{{ enr.course_id.course_name }} </td>
-                <td>{{ enr.course_id.creds }} </td>
-                <td>{{ enr.grade }} </td>
-                <td>{{ enr.enrollment_date }} </td>
-              </tr>
-              {% endfor %}
-            </table>
+          <form action="enrollments" method="post">
+            <label for="fname">Student ID:</label>
+            <input type="text" id="fname" name="name">
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="password">
+            <input type=submit>
+          </form>
         </main>
     </div>
     <footer>

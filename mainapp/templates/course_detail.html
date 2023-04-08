@@ -74,6 +74,7 @@
             margin-top: auto;
 
         }
+
         .banner {
             background-color: green;
             color: white;
@@ -100,22 +101,20 @@
         </nav>
 
         <main>
-            <table>
-              <tr>
-                <th>Course Name</th>
-                <th>Credits</th>
-                <th>Grade</th>
-                <th>Enrollment Date</th>
-              </tr>
-              {% for enr in enrollments %}
-              <tr>
-                <td >{{ enr.course_id.course_name }} </td>
-                <td>{{ enr.course_id.creds }} </td>
-                <td>{{ enr.grade }} </td>
-                <td>{{ enr.enrollment_date }} </td>
-              </tr>
-              {% endfor %}
-            </table>
+            <h2>{{ course.course_name }}</h2>
+            <p>Description: {{ course.description }}
+            </p>
+            <p>Department: {{ course.department_id.name }}
+            </p>
+            <hr>
+
+            <form action="/c{{course.id}}" method="post">
+                <label for="fname">Student ID:</label>
+                <input type="text" id="fname" name="name">
+                <label for="pass">Password:</label>
+                <input type="password" id="pass" name="password">
+                <input type=submit>
+            </form>
         </main>
     </div>
     <footer>

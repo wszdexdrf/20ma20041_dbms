@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mainapp import views
-from mainapp.models import Department
+from mainapp.models import Department, Course
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,3 +27,7 @@ urlpatterns = [
 depts = Department.objects.all()
 for dept in depts:
     urlpatterns.append(path(str(dept.id), views.department))
+
+courses = Course.objects.all()
+for course in courses:
+    urlpatterns.append(path("c"+str(course.id), views.detail_course))

@@ -3,6 +3,8 @@ from django.http import HttpRequest
 from .models import Department, Faculty, Student, Course, Enrollment
 import mainapp.myhash as myhash
 from django.views.decorators.csrf import csrf_exempt
+import random
+from datetime import datetime
 
 
 def home(request):
@@ -36,4 +38,27 @@ def login_view(request: HttpRequest):
             context = {"enrollments":
                        Enrollment.objects.filter(student_id=username)}
             return render(request, "enrollments.html", context)
-    return render(request, "enr_login.html")
+    return render(request, "login.html")
+
+
+@csrf_exempt
+def detail_course(request: HttpRequest):
+    course_id = int(request.path.split("/")[1][1:])
+    course = Course.objects.get(id=course_id)
+    context = {"course": course}
+    if request.method == "POST":
+        username = request.POST["name"]
+        password = request.POST["password"]
+        print(username, password)
+        student = Student.objects.get(pk=username)
+        if myhash.check_hash(password, student.password):
+            enrollment = Enrollment(
+                id=random.randint(1, 256),
+                student_id=student,
+                course_id=course,
+                enrollment_date=datetime.now(),
+                grade=0,
+            )
+            enrollment.save()
+            return render(request, "success.html")
+    return render(request, "course_detail.html", context)
