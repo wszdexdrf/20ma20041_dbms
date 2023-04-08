@@ -23,6 +23,7 @@ urlpatterns = [
     path("", views.home),
     path("courses", views.courses),
     path("enrollments", views.login_view),
+    path("login", views.student_login),
 ]
 depts = Department.objects.all()
 for dept in depts:

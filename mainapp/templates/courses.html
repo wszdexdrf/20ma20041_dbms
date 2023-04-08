@@ -74,6 +74,7 @@
             margin-top: auto;
 
         }
+
         .banner {
             background-color: green;
             color: white;
@@ -103,13 +104,13 @@
             <h1>List of Courses</h1>
             <table>
                 <tr>
-                    <th>Course Name</th>
-                    <th>Credits</th>
+                    <th style="text-align: center;">Course Name</th>
+                    <th style="text-align: center;">Credits</th>
                 </tr>
                 {% for course in courses %}
                 <tr>
-                    <td><a href="/c{{course.id}}">{{ course.course_name }} </a></td>
-                    <td>{{ course.creds }} </td>
+                    <td style="text-align: center;"><a href="/c{{course.id}}">{{ course.course_name }} </a></td>
+                    <td style="text-align: center;">{{ course.creds }} </td>
                 </tr>
                 {% endfor %}
             </table>

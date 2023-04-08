@@ -74,21 +74,12 @@
             margin-top: auto;
 
         }
-        .banner {
-            background-color: green;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
 
-        .banner_fail {
-            background-color: green;
-            color: white;
+        .banner {
+            background-color: lightgreen;
+            color: black;
             padding: 10px;
             text-align: center;
-            font-size: 24px;
             font-weight: bold;
         }
     </style>
@@ -109,13 +100,35 @@
         </nav>
 
         <main>
-          <form action="{{ caller }}" method="post">
-            <label for="fname">Student ID:</label>
-            <input type="text" id="fname" name="name">
-            <label for="pass">Password:</label>
-            <input type="password" id="pass" name="password">
-            <input type=submit>
-          </form>
+            <div style="display: flex;">
+                <div style="flex: 2;">
+                    <h2>Welcome, {{ student.first_name }}</h2>
+                    <p>Name: {{ student.first_name }} {{student.last_name}}<br>
+                        Email: {{ student.email }}<br>
+                        Phone number: {{ student.phone_number }}<br>
+                        Date of Birth: {{ student.date_of_birth }}<br>
+                        Department: {{ student.department_id.name }}<br>
+                    </p>
+                </div>
+                <div style="flex: 1;" class="banner">
+                    <h2>CGPA</h2>
+                    <h3>{{ cgpa }}</h3>
+                </div>
+            </div>
+            <hr>
+            <h2>Pending Courses</h2>
+            <table>
+                <tr>
+                    <th style="text-align: center;" >Course Name</th>
+                    <th style="text-align: center;">Credits</th>
+                </tr>
+                {% for course in courses %}
+                <tr>
+                    <td style="text-align: center;"><a href="/c{{course.id}}">{{ course.course_name }} </a></td>
+                    <td style="text-align: center;">{{ course.creds }} </td>
+                </tr>
+                {% endfor %}
+            </table>
         </main>
     </div>
     <footer>

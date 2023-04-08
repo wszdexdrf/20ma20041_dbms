@@ -29,6 +29,7 @@ def department(request: HttpRequest):
 
 @csrf_exempt
 def login_view(request: HttpRequest):
+    context = {"action": "enrollments"}
     if request.method == "POST":
         username = request.POST["name"]
         password = request.POST["password"]
@@ -38,7 +39,7 @@ def login_view(request: HttpRequest):
             context = {"enrollments":
                        Enrollment.objects.filter(student_id=username)}
             return render(request, "enrollments.html", context)
-    return render(request, "login.html")
+    return render(request, "login.html", context)
 
 
 @csrf_exempt
@@ -62,3 +63,28 @@ def detail_course(request: HttpRequest):
             enrollment.save()
             return render(request, "success.html")
     return render(request, "course_detail.html", context)
+
+
+@csrf_exempt
+def student_login(request: HttpRequest):
+    context = {"action": "login"}
+    if request.method == "POST":
+        username = request.POST["name"]
+        password = request.POST["password"]
+        print(username, password)
+        student = Student.objects.get(pk=username)
+        if myhash.check_hash(password, student.password):
+            enr = Enrollment.objects.filter(
+                student_id=student)
+            gs, cs, pcs = [], [], []
+            for ei in enr:
+                g = ei.grade
+                if g == 0:
+                    pcs.append(ei.course_id)
+                    continue
+                gs.append(g)
+                cs.append(ei.course_id.creds)
+            cgpa = sum([gi * ci for gi, ci in zip(gs, cs)]) / sum(cs)
+            context = {"student": student, "cgpa": cgpa, "courses": pcs}
+            return render(request, "student.html", context)
+    return render(request, "login.html", context)
