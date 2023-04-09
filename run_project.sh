@@ -7,6 +7,10 @@ read -p "SQL password: " pass
 sed -i "s/<username>/$username/" ./erp/settings.py 
 sed -i "s/<password>/$pass/" ./erp/settings.py 
 
+pip install mysqlclient
+pip install django
+pip install faker
+
 # Execute MySQL command
 mysql -u $username -p$pass -h "localhost" -e "CREATE DATABASE erpdb;"
 
