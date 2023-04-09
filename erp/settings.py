@@ -78,8 +78,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "erpdb",
-        "USER": "piyushk",
-        "PASSWORD": "1q2w3e4r5t",
+        "USER": "<username>",
+        "PASSWORD": "<password>",
     }
 }
 

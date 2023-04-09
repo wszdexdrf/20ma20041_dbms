@@ -8,7 +8,7 @@ courses = list(Course.objects.all())
 studs = list(Student.objects.all())
 data = list(itertools.product(studs, courses))
 ids = range(1, 256)
-for i in range(5 * 200):
+for i in range(20 * 200):
     id = random.sample(ids, 1)[0]
     s_d = random.sample(data, 1)[0]
     stud, course, date, grade = (
