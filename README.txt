@@ -3,7 +3,7 @@ On Ubuntu, run:
 `sudo apt-get install python3 pip python-is-python3 git libmysqlclient-dev` 
 
 Then run: `./run_project.sh`
-This will ask the SQL username and password. In the CIC Lab, Username: root and Password: passwd. 
+This will only run on a Linux system. This will ask the SQL username and password. In the CIC Lab, Username: root and Password: passwd. 
 If you are getting Permission errors, it means either the username, password is wrong or mysql is 
 not set-up. This will take some time because it is generating random data. This will run only once.
 
